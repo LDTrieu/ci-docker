@@ -34,11 +34,11 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
-          builder: ${{steps.buildx.outputs.name}}
-          push: true 
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/ci-docker
-          cache-from: type=local, src=/tmp/.buildx-cache
-          cache-to: type=local, dest=/tmp/.buildx-cache
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Verify
         run: echo ${{steps.docker_build.outpus.digest}}
